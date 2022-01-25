@@ -1,0 +1,15 @@
+alert: MAASBootResStorLargefileFailed
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.bootresources"} 
+    |~ "Failed to finalize boot image \\S+. Unexpected checksum '\\S+'.+"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Invalid boot resource checksum
+  description: |
+    Failed to store the boot resource to the database, an invalid
+    checksum was detected

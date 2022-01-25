@@ -1,0 +1,13 @@
+alert: MAASSrvFailedtoReload
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.service_monitor"} 
+    |~ "Service '\\S+' is not running and could not be started to perfom the reload"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: A service failed to reload
+  description: A service failed to reload when required

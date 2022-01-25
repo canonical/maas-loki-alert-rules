@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# Copyright 2022 Canonical Ltd.  This software is licensed under the
+# Apache License version 2 (see the file LICENSE).
+
 import argparse
 import sys
 from glob import glob
@@ -49,7 +52,7 @@ class TestGroup(Group):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Builds a groups file for direct prometheus use of rules")
+    parser = argparse.ArgumentParser(description="Builds a groups file for direct loki use of rules")
     parser.add_argument("--rules", help="blob path for rules files to be loaded from")
     parser.add_argument("--tests", help="blob path for test files to be loaded from")
     parser.add_argument("--out", help="full path to output the file to")
@@ -61,9 +64,10 @@ def main():
     group.load_snippets()
     group.to_yaml()
 
-    test_group = TestGroup(args.tests, args.test_out, args.out)
-    test_group.load_snippets()
-    test_group.to_yaml()
+    if args.tests:
+        test_group = TestGroup(args.tests, args.test_out, args.out)
+        test_group.load_snippets()
+        test_group.to_yaml()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,13 @@
+alert: MAASSrvMonFailedtoMonitor
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.service_monitor"} 
+    |~ "While monitoring service '\\S+' an error was encountered:.+"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Failed to monitor service status
+  description: The state of service is unknown
