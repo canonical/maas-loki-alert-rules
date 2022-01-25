@@ -1,0 +1,13 @@
+name: MAASLXDStoragePoolDoesNotExist
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="drivers.pod.lxd"}
+    |~ "No storage pool exists."
+    [1m]
+  )
+for: 0m
+labels:
+  severity: critical
+annotations:
+  summary: "LXD storage pool does not exist"
+  description: "A LXD host or cluster does not have a storage pool configure and is unable to allocate VMs."

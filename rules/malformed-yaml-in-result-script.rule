@@ -1,0 +1,13 @@
+name: MAASMetadataServerMalformedYAMLInResult
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="metadataserver.api_twisted"}
+    |~ "YAML must be a dictionary."
+    [1m]
+  )
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: "MAAS Metadata server received malformed YAML"
+  description: "A machine has sent MAAS' Metadata server malformed YAML results."
