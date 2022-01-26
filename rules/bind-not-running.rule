@@ -1,0 +1,13 @@
+name: MAASBindNotRunning
+expr: |
+  rate(
+    {job=~maas-audit,maas_module="maas.service_monitor"}
+    |= "Service 'bind9' is not running and could not be started to perform the reload"
+    [1m]
+  )>0
+for: 2m
+labels:
+  severity: error
+annotations:
+  summary: "MAAS' DNS server is not running."
+  description: "MAAS' DNS server is not running. Machine DNS resolution and provisioning may be affected. "

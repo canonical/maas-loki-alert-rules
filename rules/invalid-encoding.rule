@@ -1,0 +1,13 @@
+name: MAASMetadataServerEncodingError
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="metadataserver.api_twisted"}
+    |~ "Invalid encoding: \\S+"
+    [1m]
+  )
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: "MAAS Metadata server has received an invalid encoding."
+  description: "An invalid encoding payload has been sent to MAAS' Metadata server."

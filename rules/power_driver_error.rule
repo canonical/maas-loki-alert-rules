@@ -1,0 +1,13 @@
+name: MAASFailedToChangePowerState
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="drivers.power.*"}
+    |~ "Failed to power \\S+ (\\w+):(\\w+)"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: "MAAS has encountered a power driver error."
+  description: "MAAS has raised an error while trying to issue a command to a BMC"
