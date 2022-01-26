@@ -1,4 +1,4 @@
-name: MAASLXDVersionMismatch
+alert: MAASLXDVersionMismatch
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}

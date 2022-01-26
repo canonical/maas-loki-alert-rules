@@ -1,4 +1,4 @@
-name: MAASLXDStoragePoolExhausted
+alert: MAASLXDStoragePoolExhausted
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}
@@ -8,6 +8,6 @@ expr: |
 for: 0m
 labels:
   severity: critical
-annotaitons:
+annotations:
   summary: "LXD Storage Pool Exhausted"
   description: "No LXD storage pool has enough space to allocate a VM."

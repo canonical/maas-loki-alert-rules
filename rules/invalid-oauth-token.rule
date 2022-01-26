@@ -1,4 +1,4 @@
-name: MAASMetadataInvalidOAuthToken
+alert: MAASMetadataInvalidOAuthToken
 expr: |
   rate(
     {job=~"maas-audit",maas_module="metadataserver.api"}

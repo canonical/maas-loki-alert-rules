@@ -1,4 +1,4 @@
-name: MAASInvalidBindConfig
+alert: MAASInvalidBindConfig
 expr: |
   rate(
     {job=~"maas-audit",maas_module="provisiongserver.dns.config"}

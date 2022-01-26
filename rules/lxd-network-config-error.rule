@@ -1,4 +1,4 @@
-name: MAASLXDNetworkConfigError
+alert: MAASLXDNetworkConfigError
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}

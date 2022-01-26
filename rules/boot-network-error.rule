@@ -1,4 +1,4 @@
-name: MAASMachineBootNetworkError
+alert: MAASMachineBootNetworkError
 expr: |
   rate(
     {job=~"maas-audit",maas_module="maas.node"}

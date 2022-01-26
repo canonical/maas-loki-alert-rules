@@ -1,4 +1,4 @@
-name: MAASIncompatibleStorageLayout
+alert: MAASIncompatibleStorageLayout
 expr: |
   rate(
     {job=~"maas-audit",maas_module="machine.action"}
