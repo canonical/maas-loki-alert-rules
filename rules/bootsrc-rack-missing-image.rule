@@ -1,7 +1,7 @@
 alert: MAASBootResRackMissingImage
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.boot_image_download_service"} 
+    {job=~"maas-audit",maas_module="maas.boot_image_download_service"}
     |~ "Failed to download images: \\S+"
     [1m]
   )>0
@@ -10,6 +10,6 @@ labels:
   severity: error
 annotations:
   summary: Rack controller failed to download an image
-  description: |
-    The Rack controller couldn't download an image from the 
+  description: >
+    The Rack controller couldn't download an image from the
     Region controller

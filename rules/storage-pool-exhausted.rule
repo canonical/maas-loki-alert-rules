@@ -9,5 +9,5 @@ for: 0m
 labels:
   severity: critical
 annotations:
-  summary: "LXD Storage Pool Exhausted"
-  description: "No LXD storage pool has enough space to allocate a VM."
+  summary: LXD Storage Pool Exhausted
+  description: No LXD storage pool has enough space to allocate a VM.
