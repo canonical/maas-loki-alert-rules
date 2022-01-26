@@ -1,7 +1,7 @@
 alert: MAASDhcpWriteConfigFailed
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.dhcp"} 
+    {job=~"maas-audit",maas_module="maas.dhcp"}
     |= "Could not rewrite \\S+ server configuration"
     [1m]
   )>0
@@ -10,5 +10,5 @@ labels:
   severity: error
 annotations:
   summary: Unable to write DHCP server configuration
-  description: |
+  description: >
     Could not update DHCP server configuration

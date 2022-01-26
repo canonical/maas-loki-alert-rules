@@ -1,7 +1,7 @@
 alert: MAASBootRegionMissingImage
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.bootresources"} 
+    {job=~"maas-audit",maas_module="maas.bootresources"}
     |~ "Resource \\S+ has no complete resource set!"
     [1m]
   )>0
@@ -10,6 +10,6 @@ labels:
   severity: error
 annotations:
   summary: Boot resource has no complete image set
-  description: |
+  description: >
     The Region controllers don't have a complete image set
     for this boot resource, so it cannot be used for deployments

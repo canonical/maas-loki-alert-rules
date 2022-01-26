@@ -1,7 +1,7 @@
 alert: MAASDhcpProbingFailed
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.dhcp.probe"} 
+    {job=~"maas-audit",maas_module="maas.dhcp.probe"}
     |= "Unable to probe for DHCP servers"
     [1m]
   )>0
@@ -10,5 +10,5 @@ labels:
   severity: error
 annotations:
   summary: Unable to probe for DHCP servers
-  description: |
+  description: >
     The Rack controller failed to discover DHCP servers in the network

@@ -1,5 +1,7 @@
 bin/cortextool
 .ve
+.vscode
 .python-deps
+*.swp
 
 rules/**/bundle.yml

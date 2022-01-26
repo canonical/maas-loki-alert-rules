@@ -1,7 +1,7 @@
 alert: MAASSrvMonFailedtoMonitor
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.service_monitor"} 
+    {job=~"maas-audit",maas_module="maas.service_monitor"}
     |~ "While monitoring service '\\S+' an error was encountered:.+"
     [1m]
   )>0

@@ -1,7 +1,7 @@
 alert: MAASTagPopulateFailed
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.tags"} 
+    {job=~"maas-audit",maas_module="maas.tags"}
     |~ "Tag \\S+ (\\S+) could not be evaluated on rack controller.+"
     [1m]
   )>0
@@ -10,5 +10,5 @@ labels:
   severity: error
 annotations:
   summary: Tag evaluation failed
-  description: |
+  description: >
     The rack controller failed to evaluate a tag

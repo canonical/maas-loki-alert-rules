@@ -1,7 +1,7 @@
 alert: MAASNodeDelete
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.node"} 
+    {job=~"maas-audit",maas_module="maas.node"}
     |= "Deleting machine"
     [1m]
   )>5
@@ -10,6 +10,6 @@ labels:
   severity: warning
 annotations:
   summary: A batch of machines were deleted
-  description: |
+  description: >
     A group of machines were deleted by request of the user. 
     This is a normal but import event.

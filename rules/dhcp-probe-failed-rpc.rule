@@ -1,7 +1,7 @@
 alert: MAASDhcpProbingFailedNoRPC
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.dhcp.probe"} 
+    {job=~"maas-audit",maas_module="maas.dhcp.probe"}
     |= "Can't initiate DHCP probe; no RPC connection to region"
     [1m]
   )>0
@@ -10,6 +10,6 @@ labels:
   severity: error
 annotations:
   summary: Unable to probe for DHCP servers
-  description: |
-    The Rack controller aborted an attempt to discover DHCP servers 
+  description: >
+    The Rack controller aborted an attempt to discover DHCP servers
     in the network because it has no RPC connection to the Region

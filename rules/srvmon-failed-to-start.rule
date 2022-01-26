@@ -1,7 +1,7 @@
 alert: MAASSrvFailedtoStart
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.service_monitor"} 
+    {job=~"maas-audit",maas_module="maas.service_monitor"}
     |~ "Service '\\S+' failed to start"
     [1m]
   )>0

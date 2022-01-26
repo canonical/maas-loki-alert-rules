@@ -10,6 +10,17 @@ from glob import glob
 import yaml
 
 
+def str_presenter(dumper, data):
+    if len(data.splitlines()) > 1:
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
+    new_line = data.rstrip()
+    return dumper.represent_scalar("tag:yaml.org,2002:str", new_line)
+
+
+yaml.add_representer(str, str_presenter)
+yaml.representer.SafeRepresenter.add_representer(str, str_presenter)
+
+
 class Group:
     alerts = {"name": "alerts", "rules": []}
 
@@ -20,7 +31,7 @@ class Group:
     def load_snippets(self):
         for snippet in glob(self.snippet_path):
             with open(snippet) as f:
-                snippet_content = yaml.load(f.read(), Loader=yaml.FullLoader)
+                snippet_content = yaml.safe_load(f.read())
                 self.add_snippet(snippet_content)
 
     def add_snippet(self, snippet):
@@ -33,8 +44,8 @@ class Group:
         return {"groups": [self.alerts]}
 
     def to_yaml(self):
-        with open(self.out_path, 'w') as f:
-            f.write(yaml.dump(self.data()))
+        with open(self.out_path, "w") as f:
+            f.write(yaml.safe_dump(self.data()))
 
 
 class TestGroup(Group):
@@ -52,14 +63,16 @@ class TestGroup(Group):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Builds a groups file for direct loki use of rules")
+    parser = argparse.ArgumentParser(
+        description="Builds a groups file for direct loki use of rules"
+    )
     parser.add_argument("--rules", help="blob path for rules files to be loaded from")
     parser.add_argument("--tests", help="blob path for test files to be loaded from")
     parser.add_argument("--out", help="full path to output the file to")
     parser.add_argument("--test_out", help="full path to output the test file to")
 
     args = parser.parse_args(sys.argv[1:])
-    
+
     group = Group(args.rules, args.out)
     group.load_snippets()
     group.to_yaml()

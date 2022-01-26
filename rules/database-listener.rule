@@ -1,7 +1,7 @@
 alert: MAASDatabaseListener
 expr: |
   rate(
-    {job=~"maas-audit"} 
+    {job=~"maas-audit"}
     |= "Unable to connect to database:"
     [1m]
   )>0
@@ -10,5 +10,5 @@ labels:
   severity: critical
 annotations:
   summary: Unable to connect to database
-  description: |
+  description: >
     The controller failed to connect to the database

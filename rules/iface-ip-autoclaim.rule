@@ -1,7 +1,7 @@
 alert: MAASIfaceIPAutoClaimFailed
 expr: |
   rate(
-    {job=~"maas-audit",maas_module="maas.interface"} 
+    {job=~"maas-audit",maas_module="maas.interface"}
     |~ "Could not find subnet for interface \\S+."
     [1m]
   )>0
@@ -10,6 +10,6 @@ labels:
   severity: error
 annotations:
   summary: Automatic IP address could not be claimed
-  description: |
+  description: >
     Failed to claim an automatic IP address, interface is 
     missing subnet configuration
