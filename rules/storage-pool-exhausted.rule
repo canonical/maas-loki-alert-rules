@@ -2,7 +2,7 @@ name: MAASLXDStoragePoolExhausted
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}
-    |~ "Not enough storage space on any storage pools: \\+S"
+    |~ "Not enough storage space on any storage pools: \\S+"
     [1m]
   )
 for: 0m

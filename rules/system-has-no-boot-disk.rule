@@ -2,7 +2,7 @@ name: MAASSystemHasNoBootDiskError
 expr: |
   rate(
     {job=~"maas-audit",maas_module="machine.action"}
-    |~ "Mount the root '/' filesystem to be able to deploy this node."
+    |= "Mount the root '/' filesystem to be able to deploy this node."
     [1m]
   )
 for: 0m

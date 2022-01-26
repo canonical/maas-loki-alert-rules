@@ -2,7 +2,7 @@ name: MAASFailedToChangePowerState
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.power.*"}
-    |~ "Failed to power \\+S \\+w:\\+w"
+    |~ "Failed to power \\S+ (\\w+):(\\w+)"
     [1m]
   )>0
 for: 0m
