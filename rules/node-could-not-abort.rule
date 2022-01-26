@@ -1,0 +1,15 @@
+alert: MAASNodeCouldNotAbort
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.node"} 
+    |= "Error when aborting"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: warning
+annotations:
+  summary: Rack controller failed to abort a node operation
+  description: |
+    The Rack controller couldn't abort a node operation that was 
+    in progress

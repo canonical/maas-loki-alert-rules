@@ -1,0 +1,15 @@
+alert: MAASDhcpLeaseInfo
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.lease_socket_service"} 
+    |= "Can't send DHCP lease information, no RPC connection to region"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Failed to update DHCP lease info
+  description: |
+    The Rack controller couldn't update the DHCP lease information
+    due to a failure to establish a RPC connection to the Region

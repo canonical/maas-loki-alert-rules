@@ -1,0 +1,14 @@
+alert: MAASNodeCouldNotShutdown
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.node"} 
+    |= "Unable to shut node down"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: warning
+annotations:
+  summary: Rack controller failed to shutdown a node
+  description: |
+    The Rack controller couldn't shutdown a node

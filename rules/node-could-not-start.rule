@@ -1,0 +1,15 @@
+alert: MAASNodeCouldNotStart
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.node"} 
+    |= "Could not start node"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Rack controller failed to start a node
+  description: |
+    The Rack controller couldn't start a node to perform
+    the requested operation

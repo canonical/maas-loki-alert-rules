@@ -1,0 +1,13 @@
+alert: MAASSrvFailedtoRestart
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.service_monitor"} 
+    |~ "Service '\\S+' failed to restart"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: A service failed to restart
+  description: A service failed to restart when required

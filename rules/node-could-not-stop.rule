@@ -1,0 +1,14 @@
+alert: MAASNodeCouldNotStop
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.node"} 
+    |= "Could not stop node"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Rack controller failed to stop a node
+  description: |
+    The Rack controller couldn't stop a node

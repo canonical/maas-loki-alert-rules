@@ -1,0 +1,15 @@
+alert: MAASBootRegionDownloadImage
+expr: |
+  rate(
+    {job=~"maas-audit",maas_module="maas.bootsources"} 
+    |~ "Failed to import images from \\S+:.+"
+    [1m]
+  )>0
+for: 0m
+labels:
+  severity: error
+annotations:
+  summary: Failed to download images from repository
+  description: |
+    The Region controllers failed to download a new image
+    from the repository
