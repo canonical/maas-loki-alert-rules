@@ -1,4 +1,4 @@
-name: MAASFailedToChangePowerState
+alert: MAASFailedToChangePowerState
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.power.*"}

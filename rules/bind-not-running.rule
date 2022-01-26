@@ -1,4 +1,4 @@
-name: MAASBindNotRunning
+alert: MAASBindNotRunning
 expr: |
   rate(
     {job=~maas-audit,maas_module="maas.service_monitor"}

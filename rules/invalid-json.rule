@@ -1,4 +1,4 @@
-name: MAASMetadataServerInvalidJSON
+alert: MAASMetadataServerInvalidJSON
 expr: |
   rate(
     {job=~"maas-audit",maas_module="metadataserver.api_twisted"}

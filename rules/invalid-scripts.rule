@@ -1,4 +1,4 @@
-name: MAASInvalidCommissioningScript
+alert: MAASInvalidCommissioningScript
 expr: |
   rate(
     {job=~"maas-audit",maas_module="metadataserver.api"}

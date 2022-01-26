@@ -1,4 +1,4 @@
-name: MAASLxdhostOverprovisioned
+alert: MAASLxdhostOverprovisioned
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}

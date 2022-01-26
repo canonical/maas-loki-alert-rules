@@ -1,4 +1,4 @@
-name: MAASSystemHasNoBootDiskError
+alert: MAASSystemHasNoBootDiskError
 expr: |
   rate(
     {job=~"maas-audit",maas_module="machine.action"}

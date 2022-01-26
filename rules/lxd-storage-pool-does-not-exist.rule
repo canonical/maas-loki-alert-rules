@@ -1,4 +1,4 @@
-name: MAASLXDStoragePoolDoesNotExist
+alert: MAASLXDStoragePoolDoesNotExist
 expr: |
   rate(
     {job=~"maas-audit",maas_module="drivers.pod.lxd"}
