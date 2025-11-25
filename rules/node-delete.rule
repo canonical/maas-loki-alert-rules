@@ -1,9 +1,11 @@
 alert: MAASNodeDelete
 expr: |
-  rate(
-    {job=~"maas-audit",maas_module="maas.node"}
-    |= "Deleting machine"
-    [1m]
+  sum(
+    count_over_time(
+      {job=~"maas-audit",maas_module="maas.node"}
+      |= "Deleting machine"
+      [1m]
+    )
   )>5
 for: 0m
 labels:
@@ -11,5 +13,5 @@ labels:
 annotations:
   summary: A batch of machines were deleted
   description: >
-    A group of machines were deleted by request of the user. 
-    This is a normal but import event.
+    A group of machines were deleted by request of the user.
+    This is a normal but important event.
